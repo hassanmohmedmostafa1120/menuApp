@@ -11,14 +11,14 @@ namespace advancedPrint{
     };
 
     RGB toRGB(Color c) {
-    switch (c) {
-        case Color::Black:   return {0, 0, 0};
-        case Color::Red:     return {255, 0, 0};
-        case Color::Green:   return {0, 255, 0};
-        case Color::Yellow:  return {255, 255, 0};
-        case Color::White:  return {255, 255, 255};
-    }
-  
+        switch (c) {
+            case Color::Black:  return {0, 0, 0};
+            case Color::Red:    return {255, 0, 0};
+            case Color::Green:  return {0, 255, 0};
+            case Color::Yellow: return {255, 255, 0};
+            case Color::White:  return {255, 255, 255};
+        }
+        return {0, 0, 0};
     }
  
 
@@ -27,7 +27,9 @@ namespace advancedPrint{
 int moveMenuArrow(){
     while (true) {
         char byte1 = getch_linux();
-
+        if (byte1 == '\n') {
+            return 3;
+        }
         if (byte1 == 'q' || byte1 == 'Q') {
             return 0;
         }
@@ -52,10 +54,11 @@ int moveMenuArrow(){
     }   
 
 
-    void clear() {
-    printf("\x1b[2J\x1b[H");
+  void clear()
+{
+    printf("\x1b[2J\x1b[3J\x1b[H");
     fflush(stdout);
-    }
+}
 
 
     void setColor(Color c) {
@@ -96,14 +99,60 @@ int moveMenuArrow(){
     
 
 
+void addEmployee(Employee employees[], int& employeeCount)
+{
+    clear();
 
-void runMenu(menu menuArray[], int size)
+    cout << "\t\tADD EMPLOYEE "<<endl<<endl;
+
+    cout << "Enter Employee ID: ";
+    cin >> employees[employeeCount].id;
+
+    cout << "Enter Employee Name: ";
+    cin >> employees[employeeCount].name;
+
+    cout << "Enter Employee Salary: ";
+    cin >> employees[employeeCount].salary;
+
+    employeeCount++;
+}
+
+void displayEmployees(Employee employees[], int count)
+{
+    clear();
+
+   cout << "\t\tEMPLOYEE LIST"<<endl<<endl;
+
+    if (count == 0)
+    {
+        cout << "No employees found." << endl;
+    }
+    else
+    {
+        for (int i = 0; i < count; i++)
+        {
+            cout << "Employee No." << i + 1 << endl;
+            cout << "ID: " << employees[i].id << endl;
+            cout << "Name: " << employees[i].name << endl;
+            cout << "Salary: " << employees[i].salary << endl;
+            cout << "----------------------------" << endl;
+        }
+    }
+
+    cout << "Press any enter to return to the menu..." << endl;
+    cin.ignore();
+    cin.get();
+}
+
+void runMenu(menu menuArray[], int size,
+             Employee employees[], int& employeeCount)
 {
     int current = 0;
 
     while (true)
     {
         clear();
+
         displayMenu(menuArray, size);
 
         int key = moveMenuArrow();
@@ -114,9 +163,39 @@ void runMenu(menu menuArray[], int size)
         menuArray[current].selected = 0;
 
         if (key == 2)
+        {
             current = (current + 1) % size;
+        }
         else if (key == 1)
+        {
             current = (current - 1 + size) % size;
+        }
+        else if (key == 3)
+        {
+            if (current == 0)
+            {
+                if (employeeCount < 2)
+                {
+                    addEmployee(employees, employeeCount);
+                }
+                else
+                {
+                    clear();
+                    cout << "Employee storage is full!" << endl;
+                    cout << "Press any enter to return to the menu..." << endl;
+                    cin.ignore(); 
+                    cin.get();
+                }
+            }
+            else if (current == 1)
+            {
+                displayEmployees(employees, employeeCount);
+            }
+            else if (current == 2)
+            {
+                return;
+            }
+        }
 
         menuArray[current].selected = 1;
     }
