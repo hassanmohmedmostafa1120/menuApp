@@ -13,14 +13,15 @@ int main() {
     menu m3 = {"Exit", 9, 20, 0};
 
     menu menuArray[3]={m1,m2,m3};
-    Employee employees[2] = {};
-
+   // Employee employees[2] = {};
+    Employee * employees = new Employee[2];
     int employeeCount = 0;
 
     runMenu(menuArray, 3, employees, employeeCount);
 
     clear();
     moveTo(1, 1);
+    delete[] employees;
     return 0;
 
 }

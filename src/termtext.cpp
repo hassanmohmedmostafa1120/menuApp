@@ -145,7 +145,7 @@ void displayEmployees(Employee employees[], int count)
 }
 
 void runMenu(menu menuArray[], int size,
-             Employee employees[], int& employeeCount)
+             Employee *employees, int& employeeCount)
 {
     int current = 0;
 
@@ -181,10 +181,16 @@ void runMenu(menu menuArray[], int size,
                 else
                 {
                     clear();
-                    cout << "Employee storage is full!" << endl;
-                    cout << "Press any enter to return to the menu..." << endl;
-                    cin.ignore(); 
-                    cin.get();
+                   
+                    Employee *newEmployees = new Employee[employeeCount +  5];
+                    for (int i = 0; i < employeeCount; i++)
+                    {
+                        newEmployees[i] = employees[i];
+                    }
+                    delete[] employees;
+                    employees = newEmployees;
+                    addEmployee(employees, employeeCount);
+                  
                 }
             }
             else if (current == 1)
@@ -204,4 +210,9 @@ void runMenu(menu menuArray[], int size,
     
 
 }
+
+
+
+
+
 

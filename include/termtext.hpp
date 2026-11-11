@@ -11,6 +11,7 @@ struct Employee
     int id;
     char name[50];
     double salary;
+    
 };
 
 
@@ -29,7 +30,7 @@ void setColor(Color c);
 void resetColor();
 void displayMenu(menu arr[10], int size);
 int moveMenuArrow();
-void runMenu(menu menuArray[], int size, Employee employees[], int& employeeCount);
-void  addEmployee(Employee& employee);
+void runMenu(menu menuArray[], int size, Employee *employees, int& employeeCount);
+void  addEmployee(Employee& employee , int& employeeCount);
 void displayEmployees(Employee employees[], int count);
 }
