@@ -11,7 +11,7 @@ struct menu
     char *text;
     int x;
     int y;
-    Color c;
+
     int selected ;
 };
 void moveTo(int row, int col);

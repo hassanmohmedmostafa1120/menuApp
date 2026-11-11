@@ -25,26 +25,22 @@ namespace advancedPrint{
 
 
 int moveMenuArrow(){
-        char byte1;
-         do{
-        byte1= getch_linux();
+    while (true) {
+        char byte1 = getch_linux();
+
+        if (byte1 == 'q' || byte1 == 'Q') {
+            return 0;
+        }
+
         if (byte1 == '\033') {
-           char byte2=getch_linux();
-         char   byte3=getch_linux();
-            switch (byte3) {
-                case 'A':
-                
-                    return 1; // Up Arrow
-                    
-
-                case 'B':
-                    return 2; // Down Arrow
-
-            }
+            getch_linux();                    
+            char byte3 = getch_linux();      
+            if (byte3 == 'A') return 1;
+            if (byte3 == 'B') return 2;
         }
         
-    } while (byte1 != 'q' && byte1 != 'Q');
     }
+}
 
 
 
@@ -79,21 +75,26 @@ int moveMenuArrow(){
                 moveTo((arrArr[i].x) + 1, (arrArr[i].y) + 2);
                 if(arrArr[i].selected ==1)
                 {
-                     setColor(arrArr[i].c = Color::Red);
-                    printf("%s %s\n", " -> ", arrArr[i].text);
+                     setColor(Color::Yellow);
+                    printf("%s %s", " -> ", arrArr[i].text);
                      resetColor();
 
                }
               else
               {
-                    resetColor();  
-                     printf(arrArr[i].text);
+                    resetColor();
+                     printf("%s", arrArr[i].text);
              }
 
 
             }
+            fflush(stdout);   // to display the menu before waiting the key
 
     }
+
+
+    
+
 
 
     
