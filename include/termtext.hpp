@@ -21,5 +21,6 @@ void setColor(Color c);
 void resetColor();
 void displayMenu(menu arr[10], int size);
 int moveMenuArrow();
+void runMenu(menu menuArray[], int size);
 
 }

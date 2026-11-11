@@ -97,6 +97,31 @@ int moveMenuArrow(){
 
 
 
+void runMenu(menu menuArray[], int size)
+{
+    int current = 0;
+
+    while (true)
+    {
+        clear();
+        displayMenu(menuArray, size);
+
+        int key = moveMenuArrow();
+
+        if (key == 0)
+            return;
+
+        menuArray[current].selected = 0;
+
+        if (key == 2)
+            current = (current + 1) % size;
+        else if (key == 1)
+            current = (current - 1 + size) % size;
+
+        menuArray[current].selected = 1;
+    }
+}
+
     
 
 }
