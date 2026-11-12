@@ -99,13 +99,15 @@ int moveMenuArrow(){
     
 
 
-void addEmployee(Employee employees[], int& employeeCount)
+void addEmployee(Employee *employees, int& employeeCount)
 {
     clear();
 
     cout << "\t\tADD EMPLOYEE "<<endl<<endl;
 
     cout << "Enter Employee ID: ";
+
+   
     cin >> employees[employeeCount].id;
 
     cout << "Enter Employee Name: ";
@@ -117,7 +119,7 @@ void addEmployee(Employee employees[], int& employeeCount)
     employeeCount++;
 }
 
-void displayEmployees(Employee employees[], int count)
+void displayEmployees(Employee *employees, int count)
 {
     clear();
 
@@ -145,7 +147,7 @@ void displayEmployees(Employee employees[], int count)
 }
 
 void runMenu(menu menuArray[], int size,
-             Employee *employees, int& employeeCount)
+             Employee *employees, int arraySize, int& employeeCount)
 {
     int current = 0;
 
@@ -174,21 +176,21 @@ void runMenu(menu menuArray[], int size,
         {
             if (current == 0)
             {
-                if (employeeCount < 2)
+                if (employeeCount < arraySize)
                 {
                     addEmployee(employees, employeeCount);
                 }
                 else
                 {
                     clear();
-                   
-                    Employee *newEmployees = new Employee[employeeCount +  5];
+                   arraySize += 5;
+                    Employee *newEmployees = new Employee[arraySize];
                     for (int i = 0; i < employeeCount; i++)
                     {
                         newEmployees[i] = employees[i];
                     }
                     delete[] employees;
-                    employees = newEmployees;
+                    employees = newEmployees;              
                     addEmployee(employees, employeeCount);
                   
                 }

@@ -1,7 +1,7 @@
 #include <cstdio>
 #include "../include/termtext.hpp"
 #include "../include/readhelper.hpp"
-
+#define arraySize 2
 using namespace std;
 using namespace advancedPrint;  
 using namespace helper;
@@ -17,7 +17,7 @@ int main() {
     Employee * employees = new Employee[2];
     int employeeCount = 0;
 
-    runMenu(menuArray, 3, employees, employeeCount);
+    runMenu(menuArray, 3, employees, arraySize, employeeCount);
 
     clear();
     moveTo(1, 1);

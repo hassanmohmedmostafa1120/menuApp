@@ -30,7 +30,7 @@ void setColor(Color c);
 void resetColor();
 void displayMenu(menu arr[10], int size);
 int moveMenuArrow();
-void runMenu(menu menuArray[], int size, Employee *employees, int& employeeCount);
-void  addEmployee(Employee& employee , int& employeeCount);
-void displayEmployees(Employee employees[], int count);
+void runMenu(menu menuArray[], int size, Employee *employees,int arraySize ,int& employeeCount);
+void  addEmployee(Employee *employee , int& employeeCount);
+void displayEmployees(Employee *employees, int count);
 }
