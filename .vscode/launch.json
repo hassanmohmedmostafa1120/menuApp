@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug in external terminal",
+            "name": "Debug lab1 (external terminal)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/app",
@@ -10,7 +10,6 @@
             "cwd": "${workspaceFolder}",
             "externalConsole": true,
             "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

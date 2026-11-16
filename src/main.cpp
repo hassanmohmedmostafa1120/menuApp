@@ -1,13 +1,16 @@
 #include <cstdio>
 #include "../include/termtext.hpp"
 #include "../include/readhelper.hpp"
+#include"../include/Stack.hpp"
 #define arraySize 2
 using namespace std;
 using namespace advancedPrint;  
 using namespace helper;
-
+using namespace stack;
 
 int main() {
+
+    
     menu m1 = {"New", 5, 20,1};
     menu m2 = {"Display", 7, 20,0};
     menu m3 = {"Exit", 9, 20, 0};

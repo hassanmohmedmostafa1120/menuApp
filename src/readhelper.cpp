@@ -40,5 +40,43 @@ char getch_linux() {
 
 
 
+ int isInteger(char *arr)
+{
+    for (int i = 0; arr[i] != '\0'; i++)
+    {
+        if (!isdigit(arr[i]))
+            return 0;
+    }
+
+    return 1;
+}
+
+
+
+void stringCopy(char destination[], const char source[])
+{
+    int i = 0;
+
+    while (source[i] != '\0')
+    {
+        destination[i] = source[i];
+        i++;
+    }
+
+    destination[i] = '\0';
+}
+
+
+int validateAlpha(char * str){
+    for (int i = 0; str[i] != '\0'; i++) {
+        char c = str[i];
+        bool isUpper = (c >= 'A' && c <= 'Z');
+        bool isLower = (c >= 'a' && c <= 'z');
+
+        if (!(isUpper || isLower))
+            return 0;
+    }
+    return 1;
+}
    
 }

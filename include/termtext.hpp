@@ -8,7 +8,7 @@ enum class Color {
 
 struct Employee
 {
-    int id;
+    char  id[100];
     char name[50];
     double salary;
     

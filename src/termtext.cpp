@@ -79,7 +79,8 @@ int moveMenuArrow(){
                 if(arrArr[i].selected ==1)
                 {
                      setColor(Color::Yellow);
-                    printf("%s %s", " -> ", arrArr[i].text);
+                    //  printf("%s %s", " -> ", arrArr[i].text);
+                    cout << " -> " << arrArr[i].text;
                      resetColor();
 
                }
@@ -98,20 +99,47 @@ int moveMenuArrow(){
 
     
 
-
+   
 void addEmployee(Employee *employees, int& employeeCount)
 {
     clear();
 
     cout << "\t\tADD EMPLOYEE "<<endl<<endl;
 
+    char id[100];
+
     cout << "Enter Employee ID: ";
+    cin >> id;
+
+    while (!isInteger(id))
+    {
+        cout << "Invalid ID! Enter digits only: ";
+        cin >> id;
+    }
+
+    stringCopy(employees[employeeCount].id, id);
+
+
+
+
+    
+
+    char name[100];
+
+    cout << "Enter Employee Name (String only): ";
+    cin >> name;
+
+    while (!validateAlpha(name))
+    {
+         cout << "Invalid name! Enter letters only: ";
+         cin >> name;
+         clear();
+    }
+
+    stringCopy(employees[employeeCount].name, name);
+
 
    
-    cin >> employees[employeeCount].id;
-
-    cout << "Enter Employee Name: ";
-    cin >> employees[employeeCount].name;
 
     cout << "Enter Employee Salary: ";
     cin >> employees[employeeCount].salary;
